@@ -8,8 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
  
 public class UserInfoMapper implements RowMapper<UserInfo> {
 	
-	 @Override
-	    public UserInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+	 public UserInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
 	 
 	        String userName = rs.getString("Username");
 	        String password = rs.getString("Password");
