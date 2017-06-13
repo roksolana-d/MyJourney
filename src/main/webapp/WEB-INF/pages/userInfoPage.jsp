@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>${title}</title>
-
+	<jsp:include page="header.jsp"/>
 	<script
 	    src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyDxS8WSvbLkzJPrH2TVqfVspGs4QgSLWy8">
 	</script>
@@ -103,5 +103,6 @@
 	
 	<br/><br/><br/>
 	<div id="map-canvas" style="height:300px; width:500px"></div>
+	<jsp:include page="footer.jsp"/> 
 </body>
 </html>
