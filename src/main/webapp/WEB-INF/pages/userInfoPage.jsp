@@ -73,8 +73,11 @@
 <body>
     <jsp:include page="_menu.jsp" />
  
- 
-    <h1>${username}</h1>
+    <h1><c:forEach items="${nsur}" var="item" varStatus="loop">
+    	${item}
+    	${loop.last ? '' : ''}
+	</c:forEach></h1>
+    <p>${summary} <br> from ${residence}</p>
     
     <h2>
 	    <c:forEach items="${countriesCount}" var="item">
