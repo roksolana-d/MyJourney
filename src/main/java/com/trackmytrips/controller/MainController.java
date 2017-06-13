@@ -1,15 +1,22 @@
 package com.trackmytrips.controller;
 
 import java.security.Principal;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.trackmytrips.dao.UserInfoDAO;
+
  
 @Controller
 public class MainController {
 
+    @Autowired
+    private UserInfoDAO userInfoDAO;
 
 	   @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
 	   public String welcomePage(Model model) {
@@ -40,9 +47,15 @@ public class MainController {
 	 
 	       // After user login successfully.
 	       String userName = principal.getName();
-	 
-	       System.out.println("User Name: "+ userName);
-	 
+	       List<String> countriesList = userInfoDAO.getVisitedCountries(userName);
+	       List<String> citiesList = userInfoDAO.getVisitedCities(userName);
+	       List<String> countriesCount = userInfoDAO.countVisitedCountries(userName);
+	       List<String> citiesCount = userInfoDAO.countVisitedCities(userName);
+	       model.addAttribute("username", userName);
+	       model.addAttribute("countries", countriesList);
+	       model.addAttribute("cities", citiesList);
+	       model.addAttribute("countriesCount", countriesCount);
+	       model.addAttribute("citiesCount", citiesCount);
 	       return "userInfoPage";
 	   }
 	 
