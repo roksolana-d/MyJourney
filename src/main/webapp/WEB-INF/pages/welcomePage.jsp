@@ -4,7 +4,15 @@
 <title>${title}</title>
 </head>
 <body>
+  <jsp:include page="header.jsp"/>
   <jsp:include page="_menu.jsp" />
-  <h1>Message : ${message}</h1>
+  <h1>Welcome to Tracks!</h1>
+  <h6>*there must be our logo*</h6>
+  <p>You are passionate traveler and can't count at once
+	all the countries and cities where you've been? 
+	You are in the right place!</p> 
+  <p>To see how adventurous you are Register or<br>
+  Log In if you already have and account</p>  
+  <jsp:include page="footer.jsp"/>
 </body>
 </html>
