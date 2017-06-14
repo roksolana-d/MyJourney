@@ -1,6 +1,7 @@
 package com.trackmytrips.daoimpl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -23,7 +24,8 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
         this.setDataSource(dataSource);
     }
   
- 
+
+    @Override
     public UserInfo findUserInfo(String userName) {
         String sql = "Select u.Username,u.Password "//
                 + " from Users u where u.Username = ? ";
@@ -37,7 +39,8 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
             return null;
         }
     } 
- 
+
+    @Override
     public List<String> getUserRoles(String userName) {
         String sql = "Select r.User_Role "
                 + " from User_Roles r where r.Username = ? ";
@@ -48,44 +51,161 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
          
         return roles;
     }
-    
+
+    private String getUserFirstName(String userName) {
+        String sql = "select FirstName from Users where Username = ? ";
+        
+        Object[] params = new Object[] { userName };
+         
+        String firstName = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        return firstName;
+    }
+
+    private String getUserLastName(String userName) {
+        String sql = "select LastName from Users where Username = ? ";
+        
+        Object[] params = new Object[] { userName };
+         
+        String lastName = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        return lastName;
+    }
+
+    @Override
     public List<String> getVisitedCountries(String userName){
     	String sql = "Select DISTINCT p.Country from Users_Places up "
     			+ " join Places p on up.PID = p.P_ID "
     			+ " join Users u on up.UID = u.U_ID "
-    			+ " where u.Username = ? ";
+    			+ " where u.Username = ? "
+    			+ " order by p.Country;";
     	Object [] params = new Object[] { userName };
     	List<String> countries = this.getJdbcTemplate().queryForList(sql, params, String.class);
     	return countries;
     }
-    
+
+    @Override
     public List<String> getVisitedCities(String userName){
     	String sql = "Select DISTINCT p.City from Users_Places up "
     			+ " join Places p on up.PID = p.P_ID "
     			+ " join Users u on up.UID = u.U_ID "
-    			+ " where u.Username = ? ";
+    			+ " where u.Username = ? "
+    			+ " order by p.City;";
     	Object [] params = new Object[] { userName };
     	List<String> cities = this.getJdbcTemplate().queryForList(sql, params, String.class);
     	return cities;
     }
     
+    @Override
     public List<String> countVisitedCountries(String userName){
     	String sql = "Select COUNT(DISTINCT p.Country) from Users_Places up "
     			+ " join Places p on up.PID = p.P_ID "
     			+ " join Users u on up.UID = u.U_ID "
-    			+ " where u.Username = ? ";
+    			+ " where u.Username = ? "
+    			+ " order by p.Country;";
     	Object [] params = new Object[] { userName };
     	List<String> countries = this.getJdbcTemplate().queryForList(sql, params, String.class);
     	return countries;
     }
     
+    @Override
     public List<String> countVisitedCities(String userName){
     	String sql = "Select COUNT(DISTINCT p.City) from Users_Places up "
     			+ " join Places p on up.PID = p.P_ID "
     			+ " join Users u on up.UID = u.U_ID "
-    			+ " where u.Username = ? ";
+    			+ " where u.Username = ? "
+    			+ " order by p.City;";
     	Object [] params = new Object[] { userName };
     	List<String> cities = this.getJdbcTemplate().queryForList(sql, params, String.class);
     	return cities;
     }
+
+	@Override
+	public String getDateOfBirth(String userName) {
+		String sql = "select 2017-u.Date_Of_Birth from Users u where u.Username = ? "; 
+        Object[] params = new Object[] { userName };
+         
+        String date = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        return date;
+	}
+
+	@Override
+	public String getResidence(String userName) {
+		String sql = "select u.Residence from Users u where u.Username = ? "; 
+        Object[] params = new Object[] { userName };
+         
+        String residence = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        return residence;
+	}
+
+	@Override
+	public List<String> getNameSurname(String userName) {
+		List<String> sum = new ArrayList<String>();
+		sum.add(getUserFirstName(userName));
+		sum.add(getUserLastName(userName));
+		return sum;
+	}
+
+	@Override
+	public String getSummary(String userName) {
+		String sql = "select u.Summary from Users u where u.Username = ? "; 
+        Object[] params = new Object[] { userName };
+         
+        String summary = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        return summary;
+	}
+
+
+	@Override
+	public List<String> selectCountries(String userName) {
+		String sql = "select DISTINCT Country from Places "; 
+        //Object[] params = new Object[] { userName };
+         
+        List<String> allCountries = this.getJdbcTemplate().queryForList(sql, String.class);
+		return allCountries;
+	}
+
+
+	@Override
+	public List<String> selectCities(String userName) {
+		String sql = "select DISTINCT City from Places "; 
+        //Object[] params = new Object[] { userName };
+         
+        List<String> allCities = this.getJdbcTemplate().queryForList(sql, String.class);
+		return allCities;
+	}
+
+
+	@Override
+	public void editPersonalData(String fName, String lName, String res, Date date, String summary, String userName) {
+		String sql = "update Users "
+					+ " set FirstName = ?, LastName = ?, Residence = ?, Date_Of_Birth = ?, Summary = ?"
+					+ " where Username = ?";
+		Object[] params = new Object[] {fName, lName, res, date, summary, userName };
+		this.getJdbcTemplate().update(sql, params);
+	}
+
+
+	@Override
+	public void editMainData(String userName, String password) {
+		String sql = "update Users "
+				+ " set Username = ?, Password = ?"
+				+ " where Username = ?";
+		Object[] params = new Object[] {userName, password};
+		this.getJdbcTemplate().update(sql, params);
+	}
+
+
+	@Override
+	public void editCountries(String userName) {
+		String sql = "";
+		Object[] params = new Object[] {userName};
+		this.getJdbcTemplate().update(sql, params);
+	}
+
+
+	@Override
+	public void editCities(String userName) {
+		String sql = "";
+		Object[] params = new Object[] {userName};
+		this.getJdbcTemplate().update(sql, params);
+	}
 }

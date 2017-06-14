@@ -51,12 +51,48 @@ public class MainController {
 	       List<String> citiesList = userInfoDAO.getVisitedCities(userName);
 	       List<String> countriesCount = userInfoDAO.countVisitedCountries(userName);
 	       List<String> citiesCount = userInfoDAO.countVisitedCities(userName);
+	       List<String> nsur = userInfoDAO.getNameSurname(userName);
+	       String date = userInfoDAO.getDateOfBirth(userName);
+	       String summary = userInfoDAO.getSummary(userName);
+	       String residence = userInfoDAO.getResidence(userName);
 	       model.addAttribute("username", userName);
+	       model.addAttribute("nsur", nsur);
+	       model.addAttribute("date", date);
+	       model.addAttribute("summary", summary);
+	       model.addAttribute("residence", residence);
 	       model.addAttribute("countries", countriesList);
 	       model.addAttribute("cities", citiesList);
 	       model.addAttribute("countriesCount", countriesCount);
 	       model.addAttribute("citiesCount", citiesCount);
 	       return "userInfoPage";
+	   }
+	   
+	   @RequestMapping(value = "/editUser", method = RequestMethod.GET)
+	   public String editUser(Model model, Principal principal) {
+	       // After user login successfully.
+	       String userName = principal.getName();
+	       List<String> countriesList = userInfoDAO.getVisitedCountries(userName);
+	       List<String> citiesList = userInfoDAO.getVisitedCities(userName);
+	       List<String> countriesCount = userInfoDAO.countVisitedCountries(userName);
+	       List<String> citiesCount = userInfoDAO.countVisitedCities(userName);
+	       List<String> allCities = userInfoDAO.selectCities(userName);
+	       List<String> allCountries = userInfoDAO.selectCountries(userName);
+	       List<String> nsur = userInfoDAO.getNameSurname(userName);
+	       String date = userInfoDAO.getDateOfBirth(userName);
+	       String summary = userInfoDAO.getSummary(userName);
+	       String residence = userInfoDAO.getResidence(userName);
+	       model.addAttribute("username", userName);
+	       model.addAttribute("nsur", nsur);
+	       model.addAttribute("date", date);
+	       model.addAttribute("summary", summary);
+	       model.addAttribute("residence", residence);
+	       model.addAttribute("allCountries", allCountries);
+	       model.addAttribute("allCities", allCities);
+	       model.addAttribute("countries", countriesList);
+	       model.addAttribute("cities", citiesList);
+	       model.addAttribute("countriesCount", countriesCount);
+	       model.addAttribute("citiesCount", citiesCount);
+	       return "editUserPage";
 	   }
 	 
 	   @RequestMapping(value = "/403", method = RequestMethod.GET)
