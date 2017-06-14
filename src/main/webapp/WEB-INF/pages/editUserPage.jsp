@@ -8,24 +8,34 @@
 <title>${title}</title>
 </head>
 <body>
-	
-	<jsp:include page="_menu.jsp" />
+	<jsp:include page="footer.jsp"/> 	
+  	<jsp:include page="_menu.jsp" />
+  
+    <h6>To edit your information fill the fields, please.</h6>
+    <form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
+      <table>
+      	 <tr>
+            <td>First Name:</td>
+            <td><input type='text' name='firstname' value=''></td>
+         </tr>
+          <tr>
+            <td>Last Name:</td>
+            <td><input type='text' name='lastname' value=''></td>
+         </tr>
+         <tr>
+            <td>Location:</td>
+            <td><input type='text' name='location' /></td>
+         </tr>
+         <tr>
+            <td>Summary</td>
+            <td><input type='text' name='summary' /></td>
+         </tr>
+         <tr>
+            <td><input name="edit" type="submit" value="Edit" /></td>
+         </tr>      
+      </table>
+  	</form>     
  
-    <h1><c:forEach items="${nsur}" var="item" varStatus="loop">
-    	${item}
-    	${loop.last ? '' : ''}
-	</c:forEach></h1>
-    <p>${summary} <br> from ${residence}</p>
-<form:form method="post" action = "edit" commandName="user">
-<c:forEach items="${cities}" var="item" varStatus="loop">
-    	${item}
-    	${loop.last ? '' : ', '}
-	</c:forEach>
-	<input type="submit" value = "edit"> 
- </form:form>
-
-	<br/><br/><br/>
-	<div id="map-canvas" style="height:300px; width:500px"></div>
-	<jsp:include page="footer.jsp"/> 
+ 	<jsp:include page="footer.jsp"/> 
 </body>
 </html>
