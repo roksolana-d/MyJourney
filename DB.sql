@@ -11,7 +11,6 @@ create table Users
  Summary VARCHAR(500),
  Enabled smallint not null
 ) ;
- drop table Users;
 alter table Users
  add constraint USER_PK primary key (U_ID);
 
