@@ -10,15 +10,20 @@
   
   | &nbsp;
   
+   <a href="${pageContext.request.contextPath}/editUser">Edit User Info</a>
+  
+  | &nbsp;
+  
   <a href="${pageContext.request.contextPath}/admin">Admin</a>
   
   | &nbsp;
   
-  <a href="${pageContext.request.contextPath}/registerPage">Join</a>
+  <a href="${pageContext.request.contextPath}/register">Join</a>
   
   <c:if test="${pageContext.request.userPrincipal.name != null}">
   
      | &nbsp;
+  
      <a href="${pageContext.request.contextPath}/logout">Logout</a>
      
   </c:if>
