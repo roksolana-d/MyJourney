@@ -11,7 +11,7 @@
 	<jsp:include page="footer.jsp"/> 	
   	<jsp:include page="_menu.jsp" />
   
-    <h6>To edit your information fill the fields, please.</h6>
+    <h4>To edit your information fill the fields, please.</h4>
     <form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
       <table>
       	 <tr>
@@ -31,11 +31,30 @@
             <td><input type='text' name='summary' value='${summary}'/></td>
          </tr>
          <tr>
-            <td><input name="edit" type="submit" value="Edit" /></td>
+            <td><input name="edit" type="submit" value="Submit" /></td>
          </tr>      
       </table>
   	</form>     
  
+ 	<h4>Select countries you have visited</h4>
+ 	<form name="countries" ">
+				  <c:forEach items="${allCountries}" var="item">
+					<input type=checkbox name='country' >
+						<c:out value="${item}" /> 
+						</input><br>
+				  </c:forEach><br>
+		<input type="submit" value="Submit"/>
+    </form>
+    
+    <h4>Select cities you have visited</h4>
+ 	<form name="cities" ">
+				  <c:forEach items="${allCities}" var="item">
+					<input type=checkbox name='city' >
+						<c:out value="${item}" /> 
+						</input><br>
+				  </c:forEach><br>
+		<input type="submit" value="Submit"/>
+    </form>
  	<jsp:include page="footer.jsp"/> 
 </body>
 </html>

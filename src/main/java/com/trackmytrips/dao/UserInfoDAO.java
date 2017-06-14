@@ -39,7 +39,7 @@ public interface UserInfoDAO {
     
 	public void editMainData(String userName, String password);
 	
-	public void editCountries(String userName);
+	public void editCountries(String userName, String country);
 	
-	public void editCities(String userName);
+	public void editCities(String userName, String city);
 }

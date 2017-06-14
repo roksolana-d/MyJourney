@@ -57,7 +57,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
         
         Object[] params = new Object[] { userName };
          
-        String firstName = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        String firstName = (String)this.getJdbcTemplate().queryForObject(sql, params, String.class);
         return firstName;
     }
 
@@ -66,7 +66,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
         
         Object[] params = new Object[] { userName };
          
-        String lastName = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        String lastName = (String)this.getJdbcTemplate().queryForObject(sql, params, String.class);
         return lastName;
     }
 
@@ -123,7 +123,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		String sql = "select 2017-u.Date_Of_Birth from Users u where u.Username = ? "; 
         Object[] params = new Object[] { userName };
          
-        String date = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        String date = (String)this.getJdbcTemplate().queryForObject(sql, params, String.class);
         return date;
 	}
 
@@ -132,7 +132,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		String sql = "select u.Residence from Users u where u.Username = ? "; 
         Object[] params = new Object[] { userName };
          
-        String residence = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        String residence = (String)this.getJdbcTemplate().queryForObject(sql, params, String.class);
         return residence;
 	}
 
@@ -148,7 +148,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	public String getSummary(String userName) {
 		String sql = "select u.Summary from Users u where u.Username = ? "; 
         Object[] params = new Object[] { userName };         
-        String summary = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        String summary = (String)this.getJdbcTemplate().queryForObject(sql, params, String.class);
         return summary;
 	}
 
@@ -193,17 +193,21 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 
 
 	@Override
-	public void editCountries(String userName) {
-		String sql = "";
-		Object[] params = new Object[] {userName};
+	public void editCountries(String userName, String country) {
+		String sql = "insert into Users_Places (Uid, Pid)"
+					+ " values ((select U_ID from Users where Username = ? ),"
+					+ "(select P_ID from Places where Country = ? ));";
+		Object[] params = new Object[] {userName, country};
 		this.getJdbcTemplate().update(sql, params);
 	}
 
 
 	@Override
-	public void editCities(String userName) {
-		String sql = "";
-		Object[] params = new Object[] {userName};
+	public void editCities(String userName, String city) {
+		String sql = "insert into Users_Places (Uid, Pid)"
+				+ " values ((select U_ID from Users where Username = ?),"
+				+ "(select P_ID from Places where City = ? ));";
+		Object[] params = new Object[] {userName, city};
 		this.getJdbcTemplate().update(sql, params);
 	}
 
