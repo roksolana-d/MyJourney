@@ -1,5 +1,6 @@
 package com.trackmytrips.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.trackmytrips.model.UserInfo;
@@ -16,6 +17,10 @@ public interface UserInfoDAO {
 	
 	public String getSummary(String userName);
 	
+	public List<String> selectCountries(String userName);
+	
+	public List<String> selectCities(String userName);
+	
 	public List<String> getNameSurname(String userName);
 	
 	public List<String> getVisitedCountries(String userName);
@@ -25,4 +30,12 @@ public interface UserInfoDAO {
 	public List<String> countVisitedCountries(String userName);
     
 	public List<String> countVisitedCities(String userName);
+	
+	public void editPersonalData(String fName, String lName, String res, Date date, String summary, String userName);
+    
+	public void editMainData(String userName, String password);
+	
+	public void editCountries(String userName);
+	
+	public void editCities(String userName);
 }

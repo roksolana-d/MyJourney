@@ -1,6 +1,7 @@
 package com.trackmytrips.daoimpl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -150,5 +151,61 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
          
         String summary = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
         return summary;
+	}
+
+
+	@Override
+	public List<String> selectCountries(String userName) {
+		String sql = "select DISTINCT Country from Places "; 
+        //Object[] params = new Object[] { userName };
+         
+        List<String> allCountries = this.getJdbcTemplate().queryForList(sql, String.class);
+		return allCountries;
+	}
+
+
+	@Override
+	public List<String> selectCities(String userName) {
+		String sql = "select DISTINCT City from Places "; 
+        //Object[] params = new Object[] { userName };
+         
+        List<String> allCities = this.getJdbcTemplate().queryForList(sql, String.class);
+		return allCities;
+	}
+
+
+	@Override
+	public void editPersonalData(String fName, String lName, String res, Date date, String summary, String userName) {
+		String sql = "update Users "
+					+ " set FirstName = ?, LastName = ?, Residence = ?, Date_Of_Birth = ?, Summary = ?"
+					+ " where Username = ?";
+		Object[] params = new Object[] {fName, lName, res, date, summary, userName };
+		this.getJdbcTemplate().update(sql, params);
+	}
+
+
+	@Override
+	public void editMainData(String userName, String password) {
+		String sql = "update Users "
+				+ " set Username = ?, Password = ?"
+				+ " where Username = ?";
+		Object[] params = new Object[] {userName, password};
+		this.getJdbcTemplate().update(sql, params);
+	}
+
+
+	@Override
+	public void editCountries(String userName) {
+		String sql = "";
+		Object[] params = new Object[] {userName};
+		this.getJdbcTemplate().update(sql, params);
+	}
+
+
+	@Override
+	public void editCities(String userName) {
+		String sql = "";
+		Object[] params = new Object[] {userName};
+		this.getJdbcTemplate().update(sql, params);
 	}
 }
