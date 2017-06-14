@@ -91,9 +91,9 @@
 	</c:forEach>
 
 	<h2>
-		<c:forEach items="${citiesCount}" var="item">
-	    	${item}
-	    </c:forEach> visited cities: 
+	<c:forEach items="${citiesCount}" var="item">
+	    ${item}
+	</c:forEach> visited cities: 
 	    </h2>
 	    
 	<c:forEach items="${cities}" var="item" varStatus="loop">

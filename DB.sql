@@ -417,4 +417,3 @@ insert into Users_Places (Uid, Pid)
  join Users u on up.UID = u.U_ID
  where u.Username = 'dbuser1' order by p.City;
  
- 

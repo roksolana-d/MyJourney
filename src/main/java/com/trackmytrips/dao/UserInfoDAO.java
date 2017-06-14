@@ -13,9 +13,13 @@ public interface UserInfoDAO {
 	
 	public String getDateOfBirth(String userName);
 	
-	public String getResidence(String userName);
-	
 	public String getSummary(String userName);
+	
+	public String getFirstName(String userName);
+	
+	public String getLastName(String userName);
+	
+	public String getResidence(String userName);
 	
 	public List<String> selectCountries(String userName);
 	
@@ -35,7 +39,7 @@ public interface UserInfoDAO {
     
 	public void editMainData(String userName, String password);
 	
-	public void editCountries(String userName);
+	public void editCountries(String userName, String country);
 	
-	public void editCities(String userName);
+	public void editCities(String userName, String city);
 }
