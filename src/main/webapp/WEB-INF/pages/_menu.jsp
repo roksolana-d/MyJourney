@@ -8,9 +8,9 @@
   
   <a href="${pageContext.request.contextPath}/userInfo">User Info</a>
   
-  <c:if test="${pageContext.request.userPrincipal.name != null}">
+  <c:if test="${pageContext.request.userPrincipal.name != null}">    
   	| &nbsp;  
-    <a href="${pageContext.request.contextPath}/editUser">Edit User Info</a>
+    <a href="${pageContext.request.contextPath}/editUser">Edit User Info</a>       
   </c:if>
   
   | &nbsp;
