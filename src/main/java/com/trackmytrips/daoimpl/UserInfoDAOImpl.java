@@ -147,8 +147,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	@Override
 	public String getSummary(String userName) {
 		String sql = "select u.Summary from Users u where u.Username = ? "; 
-        Object[] params = new Object[] { userName };
-         
+        Object[] params = new Object[] { userName };         
         String summary = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
         return summary;
 	}
@@ -157,8 +156,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	@Override
 	public List<String> selectCountries(String userName) {
 		String sql = "select DISTINCT Country from Places "; 
-        //Object[] params = new Object[] { userName };
-         
+        //Object[] params = new Object[] { userName };         
         List<String> allCountries = this.getJdbcTemplate().queryForList(sql, String.class);
 		return allCountries;
 	}
@@ -208,4 +206,25 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		Object[] params = new Object[] {userName};
 		this.getJdbcTemplate().update(sql, params);
 	}
+
+
+	@Override
+	public String getFirstName(String userName) {
+		// TODO Auto-generated method stub		
+		String sql = "select u.FirstName from Users u where u.Username = ? "; 
+        Object[] params = new Object[] { userName };         
+        String firstName = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        return firstName;
+	}
+
+
+	@Override
+	public String getLastName(String userName) {
+		// TODO Auto-generated method stub
+		String sql = "select u.LastName from Users u where u.Username = ? "; 
+        Object[] params = new Object[] { userName };         
+        String lastName = (String)getJdbcTemplate().queryForObject(sql, params, String.class);
+        return lastName;
+	}
+
 }

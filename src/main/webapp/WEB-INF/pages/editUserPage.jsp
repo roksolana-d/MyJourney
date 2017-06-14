@@ -16,19 +16,19 @@
       <table>
       	 <tr>
             <td>First Name:</td>
-            <td><input type='text' name='firstname' value=''></td>
+            <td><input type='text' name='firstname' value='${firstname}'></td>
          </tr>
           <tr>
             <td>Last Name:</td>
-            <td><input type='text' name='lastname' value=''></td>
+            <td><input type='text' name='lastname' value='${lastname}'></td>
          </tr>
          <tr>
-            <td>Location:</td>
-            <td><input type='text' name='location' /></td>
+            <td>Residence:</td>
+            <td><input type='text' name='residence' value='${residence}'/></td>
          </tr>
          <tr>
             <td>Summary</td>
-            <td><input type='text' name='summary' /></td>
+            <td><input type='text' name='summary' value='${summary}'/></td>
          </tr>
          <tr>
             <td><input name="edit" type="submit" value="Edit" /></td>

@@ -81,8 +81,12 @@ public class MainController {
 	       String date = userInfoDAO.getDateOfBirth(userName);
 	       String summary = userInfoDAO.getSummary(userName);
 	       String residence = userInfoDAO.getResidence(userName);
+	       String lastName = userInfoDAO.getFirstName(userName);
+	       String firstName = userInfoDAO.getLastName(userName);
 	       model.addAttribute("username", userName);
 	       model.addAttribute("nsur", nsur);
+	       model.addAttribute("firstname", firstName);
+	       model.addAttribute("lastname", lastName);
 	       model.addAttribute("date", date);
 	       model.addAttribute("summary", summary);
 	       model.addAttribute("residence", residence);
