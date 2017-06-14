@@ -11,7 +11,6 @@ create table Users
  Summary VARCHAR(500),
  Enabled smallint not null
 ) ;
- drop table Users;
 alter table Users
  add constraint USER_PK primary key (U_ID);
 
@@ -417,5 +416,4 @@ insert into Users_Places (Uid, Pid)
  join Places p on up.PID = p.P_ID
  join Users u on up.UID = u.U_ID
  where u.Username = 'dbuser1' order by p.City;
- 
  
