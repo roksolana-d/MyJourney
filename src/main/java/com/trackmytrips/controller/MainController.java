@@ -29,6 +29,11 @@ public class MainController {
 	   public String adminPage(Model model) {
 	       return "adminPage";
 	   }
+	   
+	   @RequestMapping(value = "/register", method = RequestMethod.GET)
+	   public String registerPage(Model model) {
+	       return "registerPage";
+	   }
 	 
 	   @RequestMapping(value = "/login", method = RequestMethod.GET)
 	   public String loginPage(Model model ) {
