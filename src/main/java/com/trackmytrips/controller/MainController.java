@@ -1,6 +1,7 @@
 package com.trackmytrips.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,8 @@ public class MainController {
 	       String date = userInfoDAO.getDateOfBirth(userName);
 	       String summary = userInfoDAO.getSummary(userName);
 	       String residence = userInfoDAO.getResidence(userName);
+	       
+	       
 	       model.addAttribute("username", userName);
 	       model.addAttribute("nsur", nsur);
 	       model.addAttribute("date", date);
@@ -105,6 +108,9 @@ public class MainController {
 	       List<String> citiesCount = userInfoDAO.countVisitedCities(userName);
 	       List<String> allCities = userInfoDAO.selectCities(userName);
 	       List<String> allCountries = userInfoDAO.selectCountries(userName);
+	       
+	       boolean cityCheck = userInfoDAO.citiesCheck(allCities, userName);
+	       boolean countryCheck = userInfoDAO.countriesCheck(allCountries, userName);
 	       csInfo.setCountries(allCountries);
 	       csInfo.setCities(allCities);
 	       
@@ -114,6 +120,8 @@ public class MainController {
 	       model.addAttribute("cities", citiesList);
 	       model.addAttribute("countriesCount", countriesCount);
 	       model.addAttribute("citiesCount", citiesCount);
+	       model.addAttribute("countryCheck", countryCheck);
+	       model.addAttribute("cityCheck", cityCheck);
 	       return "editPlaces";
 	   }
 	 

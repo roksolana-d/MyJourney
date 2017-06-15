@@ -274,4 +274,63 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		Object[] params = new Object[] {fName, userName};
 		this.getJdbcTemplate().update(sql, params);
 	}
+	
+	@Override
+	public List<String> selectCountriesIDs(String userName, String country) {
+		String sql = " select PID from Users_Places up"
+						 + " join Places p on up.PID = p.P_ID"
+						 + " join Users u on up.UID = u.U_ID"
+						 + "  where u.Username = ? AND Country = ? "; 
+        Object[] params = new Object[] { userName ,country};
+         
+        List<String> countriesIDs = this.getJdbcTemplate().queryForList(sql, params, String.class);
+		return countriesIDs;
+	}
+
+
+	@Override
+	public List<String> selectCitiesIDs(String userName, String city) {
+		String sql = " select PID from Users_Places up"
+						 + " join Places p on up.PID = p.P_ID"
+						 + " join Users u on up.UID = u.U_ID"
+						 + "  where u.Username = ? AND City = ? "; 
+        Object[] params = new Object[] { userName, city};
+         
+        List<String> citiesIDs = this.getJdbcTemplate().queryForList(sql, params, String.class);
+		return citiesIDs;
+	}
+	
+	@Override
+	public boolean citiesCheck(List<String> cities, String userName){
+		List<String> citiesIDs = new ArrayList<String>();
+		boolean cityCh = false;
+
+		for(String city : cities){
+	    	citiesIDs = selectCitiesIDs(userName, city);
+	    }
+		
+		if(citiesIDs != null){
+	    	cityCh = true;
+	    }else{
+	    	cityCh = false;
+	    }
+		return cityCh;
+	}
+	
+	@Override
+	public boolean countriesCheck(List<String> countries, String userName){
+		List<String> countriesIDs = new ArrayList<String>();
+		boolean countryCh = false;
+
+		for(String city : countries){
+	    	countriesIDs = selectCountriesIDs(userName, city);
+	    }
+		
+		if(countriesIDs != null){
+	    	countryCh = true;
+	    }else{
+	    	countryCh = false;
+	    }
+		return countryCh;
+	}
 }

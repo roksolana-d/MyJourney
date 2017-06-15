@@ -23,6 +23,10 @@ public interface UserInfoDAO {
 	public String getResidence(String userName);
 	
 	public List<String> selectCountries(String userName);
+
+	public List<String> selectCountriesIDs(String userName, String country);
+	
+	public List<String> selectCitiesIDs(String userName, String city);
 	
 	public List<String> selectCities(String userName);
 	
@@ -45,6 +49,10 @@ public interface UserInfoDAO {
 	public void editCities(String userName, String city);
 	
 	public void editFirstName(String userName, String fName);
+	
+	public boolean citiesCheck(List<String> cities, String userName);
+	
+	public boolean countriesCheck(List<String> countries, String userName);
 	
 	public CountriesCitiesInfo editCountriesMapper(String userName, String country);
 	
