@@ -37,7 +37,7 @@
   	</form>     
  
  	<h4>Select countries you have visited</h4>
- 	<form name="countries" ">
+ 	<form name="countries" method='POST'>
 				  <c:forEach items="${allCountries}" var="item">
 					<input type=checkbox name='country' >
 						<c:out value="${item}" /> 
@@ -47,7 +47,7 @@
     </form>
     
     <h4>Select cities you have visited</h4>
- 	<form name="cities" ">
+ 	<form name="cities" method='POST'>
 				  <c:forEach items="${allCities}" var="item">
 					<input type=checkbox name='city' >
 						<c:out value="${item}" /> 
