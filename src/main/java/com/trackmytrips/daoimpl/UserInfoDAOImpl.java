@@ -299,4 +299,38 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
         List<String> citiesIDs = this.getJdbcTemplate().queryForList(sql, params, String.class);
 		return citiesIDs;
 	}
+	
+	@Override
+	public boolean citiesCheck(List<String> cities, String userName){
+		List<String> citiesIDs = new ArrayList<String>();
+		boolean cityCh = false;
+
+		for(String city : cities){
+	    	citiesIDs = selectCitiesIDs(userName, city);
+	    }
+		
+		if(citiesIDs != null){
+	    	cityCh = true;
+	    }else{
+	    	cityCh = false;
+	    }
+		return cityCh;
+	}
+	
+	@Override
+	public boolean countriesCheck(List<String> countries, String userName){
+		List<String> countriesIDs = new ArrayList<String>();
+		boolean countryCh = false;
+
+		for(String city : countries){
+	    	countriesIDs = selectCountriesIDs(userName, city);
+	    }
+		
+		if(countriesIDs != null){
+	    	countryCh = true;
+	    }else{
+	    	countryCh = false;
+	    }
+		return countryCh;
+	}
 }

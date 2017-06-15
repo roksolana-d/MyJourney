@@ -50,6 +50,10 @@ public interface UserInfoDAO {
 	
 	public void editFirstName(String userName, String fName);
 	
+	public boolean citiesCheck(List<String> cities, String userName);
+	
+	public boolean countriesCheck(List<String> countries, String userName);
+	
 	public CountriesCitiesInfo editCountriesMapper(String userName, String country);
 	
 	public CountriesCitiesInfo editCitiesMapper(String userName, String city);
