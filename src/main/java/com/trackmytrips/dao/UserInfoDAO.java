@@ -42,4 +42,6 @@ public interface UserInfoDAO {
 	public void editCountries(String userName, String country);
 	
 	public void editCities(String userName, String city);
+	
+	public void editFirstName(String userName, String fName);
 }
