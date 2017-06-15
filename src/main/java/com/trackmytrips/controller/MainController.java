@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -112,7 +113,8 @@ public class MainController {
 	       csInfo.setCities(allCities);
 	       //boolean cityCheck = userInfoDAO.citiesCheck(userName);
 	       //boolean countryCheck = userInfoDAO.countriesCheck(userName);
-	       
+	       List<String> notVisitedCo = userInfoDAO.selectCountries(userName);
+	       notVisitedCo.removeAll(countriesList);
 	       
 	       model.addAttribute("allCountries", csInfo.getCountries());
 	       model.addAttribute("allCities", csInfo.getCities());
@@ -120,11 +122,21 @@ public class MainController {
 	       model.addAttribute("citiesList", citiesList);
 	       model.addAttribute("countriesCount", countriesCount);
 	       model.addAttribute("citiesCount", citiesCount);
-	      // model.addAttribute("countryCheck", countryCheck);
+	       model.addAttribute("notVisCo", notVisitedCo);
+	       //model.addAttribute("countryCheck", countryCheck);
 	       //model.addAttribute("cityCheck", cityCheck);
 	       return "editPlaces";
 	   }
-	 
+	 /*
+	   @RequestMapping(method = RequestMethod.POST)
+	   public String submitForm(Model model, BindingResult result, Principal principal, ) {
+		   String userName = principal.getName();
+		   userInfoDAO.editCountries(userName, request);
+
+	       return "successMember";
+	   }*/
+
+	   
 	   @RequestMapping(value = "/403", method = RequestMethod.GET)
 	   public String accessDenied(Model model, Principal principal) {
 	        
