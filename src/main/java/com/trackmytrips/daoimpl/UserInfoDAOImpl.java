@@ -274,4 +274,29 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		Object[] params = new Object[] {fName, userName};
 		this.getJdbcTemplate().update(sql, params);
 	}
+	
+	@Override
+	public List<String> selectCountriesIDs(String userName, String country) {
+		String sql = " select PID from Users_Places up"
+						 + " join Places p on up.PID = p.P_ID"
+						 + " join Users u on up.UID = u.U_ID"
+						 + "  where u.Username = ? AND Country = ? "; 
+        Object[] params = new Object[] { userName ,country};
+         
+        List<String> countriesIDs = this.getJdbcTemplate().queryForList(sql, params, String.class);
+		return countriesIDs;
+	}
+
+
+	@Override
+	public List<String> selectCitiesIDs(String userName, String city) {
+		String sql = " select PID from Users_Places up"
+						 + " join Places p on up.PID = p.P_ID"
+						 + " join Users u on up.UID = u.U_ID"
+						 + "  where u.Username = ? AND City = ? "; 
+        Object[] params = new Object[] { userName, city};
+         
+        List<String> citiesIDs = this.getJdbcTemplate().queryForList(sql, params, String.class);
+		return citiesIDs;
+	}
 }

@@ -23,6 +23,10 @@ public interface UserInfoDAO {
 	public String getResidence(String userName);
 	
 	public List<String> selectCountries(String userName);
+
+	public List<String> selectCountriesIDs(String userName, String country);
+	
+	public List<String> selectCitiesIDs(String userName, String city);
 	
 	public List<String> selectCities(String userName);
 	

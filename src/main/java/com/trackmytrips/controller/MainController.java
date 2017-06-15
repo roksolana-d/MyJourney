@@ -61,6 +61,8 @@ public class MainController {
 	       String date = userInfoDAO.getDateOfBirth(userName);
 	       String summary = userInfoDAO.getSummary(userName);
 	       String residence = userInfoDAO.getResidence(userName);
+	       
+	       
 	       model.addAttribute("username", userName);
 	       model.addAttribute("nsur", nsur);
 	       model.addAttribute("date", date);
@@ -105,6 +107,9 @@ public class MainController {
 	       List<String> citiesCount = userInfoDAO.countVisitedCities(userName);
 	       List<String> allCities = userInfoDAO.selectCities(userName);
 	       List<String> allCountries = userInfoDAO.selectCountries(userName);
+	       
+	       List<String> citiesIDs = userInfoDAO.selectCitiesIDs(userName, null);
+	       List<String> countriesIDs = userInfoDAO.selectCountriesIDs(userName, null);
 	       csInfo.setCountries(allCountries);
 	       csInfo.setCities(allCities);
 	       
@@ -114,6 +119,8 @@ public class MainController {
 	       model.addAttribute("cities", citiesList);
 	       model.addAttribute("countriesCount", countriesCount);
 	       model.addAttribute("citiesCount", citiesCount);
+	       model.addAttribute("countriesIDs", countriesIDs);
+	       model.addAttribute("citiesIDs", citiesIDs);
 	       return "editPlaces";
 	   }
 	 
