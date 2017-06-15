@@ -8,7 +8,7 @@
 <title>${title}</title>
 </head>
 <body>
-	<jsp:include page="footer.jsp"/> 	
+	<jsp:include page="header.jsp"/>  	
   	<jsp:include page="_menu.jsp" />
   
     <h4>To edit your information fill the fields, please.</h4>
@@ -35,26 +35,7 @@
          </tr>      
       </table>
   	</form>     
- 
- 	<h4>Select countries you have visited</h4>
- 	<form name="countries" method='POST'>
-				  <c:forEach items="${allCountries}" var="item">
-					<input type=checkbox name='country' >
-						<c:out value="${item}" /> 
-						</input><br>
-				  </c:forEach><br>
-		<input type="submit" value="Submit"/>
-    </form>
-    
-    <h4>Select cities you have visited</h4>
- 	<form name="cities" method='POST'>
-				  <c:forEach items="${allCities}" var="item">
-					<input type=checkbox name='city' >
-						<c:out value="${item}" /> 
-						</input><br>
-				  </c:forEach><br>
-		<input type="submit" value="Submit"/>
-    </form>
+  	
  	<jsp:include page="footer.jsp"/> 
 </body>
 </html>

@@ -2,26 +2,17 @@
  
 <div style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">
  
+  <c:if test="${pageContext.request.userPrincipal.name == null}">
   <a href="${pageContext.request.contextPath}/welcome">Home</a>  
-  
   | &nbsp;  
+  </c:if>  
   
   <a href="${pageContext.request.contextPath}/userInfo">User Info</a>
-  
-  <c:if test="${pageContext.request.userPrincipal.name != null}">    
-  	| &nbsp;  
-    <a href="${pageContext.request.contextPath}/editUser">Edit User Info</a>       
-  </c:if>
   
   | &nbsp;
   
   <a href="${pageContext.request.contextPath}/admin">Admin</a>
-  
-  <c:if test="${pageContext.request.userPrincipal.name == null}">  
-  	| &nbsp;  
-  	<a href="${pageContext.request.contextPath}/register">Join</a>  
-  </c:if>
-  
+
   <c:if test="${pageContext.request.userPrincipal.name != null}">  
      | &nbsp;
      <a href="${pageContext.request.contextPath}/logout">Logout</a>     

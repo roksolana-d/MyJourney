@@ -24,7 +24,7 @@
 	        ['Lviv, Ukraine', 49.8326679,23.9421957]
 	  ];
 	 
-	  
+	  var bounds = new google.maps.LatLngBounds();
 	  // Loop through our array of markers & place each one on the map  
 	    for( i = 0; i < markers.length; i++ ) {
 	        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
@@ -41,7 +41,6 @@
 	  
 	 // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
 	    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-	        this.setZoom(14);
 	        google.maps.event.removeListener(boundsListener);
 	    });
 	}
@@ -51,6 +50,7 @@
 </head>
 <body>
     <jsp:include page="_menu.jsp" />
+    <a href="${pageContext.request.contextPath}/editUser">Edit Personal Info</a> 
  
     <h1><c:forEach items="${nsur}" var="item" varStatus="loop">
     	${item}
@@ -79,6 +79,8 @@
     	${item}
     	${loop.last ? '' : ', '}
 	</c:forEach>
+	
+	 <a href="${pageContext.request.contextPath}/editPlaces">Add more visited places</a> 
 	
 	<br/><br/><br/>
 	<div id="map-canvas" style="height:300px; width:500px"></div>
