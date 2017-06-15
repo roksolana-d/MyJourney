@@ -51,6 +51,7 @@
 </head>
 <body>
     <jsp:include page="_menu.jsp" />
+    <a href="${pageContext.request.contextPath}/editUser">Edit Personal Info</a> 
  
     <h1><c:forEach items="${nsur}" var="item" varStatus="loop">
     	${item}

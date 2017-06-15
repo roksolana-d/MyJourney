@@ -12,8 +12,8 @@
 	all the countries and cities where you've been? 
 	You are in the right place!</p> 
   <p>To see how adventurous you are 
-  <a href="${pageContext.request.contextPath}/registerPage">Register</a> or<br>
-  <a href="${pageContext.request.contextPath}/loginPage">Log In</a>
+  <a href="${pageContext.request.contextPath}/register">Register</a> or<br>
+  <a href="${pageContext.request.contextPath}/userInfo">Log In</a>
    if you already have and account</p>  
   <jsp:include page="footer.jsp"/>
 </body>

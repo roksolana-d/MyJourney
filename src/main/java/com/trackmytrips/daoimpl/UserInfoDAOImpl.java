@@ -268,4 +268,10 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
         return lastName;
 	}
 
+	@Override
+	public void editFirstName(String userName, String fName){
+		String sql = "update Users set FirstName = ? where Username = ?";
+		Object[] params = new Object[] {fName, userName};
+		this.getJdbcTemplate().update(sql, params);
+	}
 }
