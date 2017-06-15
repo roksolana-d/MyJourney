@@ -7,7 +7,9 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.trackmytrips.dao.UserInfoDAO;
+import com.trackmytrips.mapper.CountriesCitiesInfoMapper;
 import com.trackmytrips.mapper.UserInfoMapper;
+import com.trackmytrips.model.CountriesCitiesInfo;
 import com.trackmytrips.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -209,6 +211,41 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 				+ "(select P_ID from Places where City = ? ));";
 		Object[] params = new Object[] {userName, city};
 		this.getJdbcTemplate().update(sql, params);
+	}
+	
+	@Override
+	public CountriesCitiesInfo editCountriesMapper(String userName, String country) {
+		String sql = "insert into Users_Places (Uid, Pid)"
+					+ " values ((select U_ID from Users where Username = ? ),"
+					+ "(select P_ID from Places where Country = ? ));";
+		Object[] params = new Object[] {userName, country};
+		this.getJdbcTemplate().update(sql, params);
+		
+		CountriesCitiesInfoMapper mapper = new CountriesCitiesInfoMapper();
+        try {
+        	CountriesCitiesInfo ccInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+            return ccInfo;
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+	}
+
+
+	@Override
+	public CountriesCitiesInfo editCitiesMapper(String userName, String city) {
+		String sql = "insert into Users_Places (Uid, Pid)"
+				+ " values ((select U_ID from Users where Username = ?),"
+				+ "(select P_ID from Places where City = ? ));";
+		Object[] params = new Object[] {userName, city};
+		this.getJdbcTemplate().update(sql, params);
+		
+		CountriesCitiesInfoMapper mapper = new CountriesCitiesInfoMapper();
+        try {
+        	CountriesCitiesInfo ccInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+            return ccInfo;
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
 	}
 
 

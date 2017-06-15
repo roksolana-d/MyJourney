@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.trackmytrips.dao.UserInfoDAO;
+import com.trackmytrips.model.CountriesCitiesInfo;
 
  
 @Controller
@@ -75,6 +76,7 @@ public class MainController {
 	   @RequestMapping(value = "/editUser", method = RequestMethod.GET)
 	   public String editUser(Model model, Principal principal) {
 	       // After user login successfully.
+		   CountriesCitiesInfo csInfo = new CountriesCitiesInfo();
 	       String userName = principal.getName();
 	       List<String> countriesList = userInfoDAO.getVisitedCountries(userName);
 	       List<String> citiesList = userInfoDAO.getVisitedCities(userName);

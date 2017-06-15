@@ -3,6 +3,7 @@ package com.trackmytrips.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.trackmytrips.model.CountriesCitiesInfo;
 import com.trackmytrips.model.UserInfo;
 
 public interface UserInfoDAO {
@@ -42,4 +43,8 @@ public interface UserInfoDAO {
 	public void editCountries(String userName, String country);
 	
 	public void editCities(String userName, String city);
+	
+	public CountriesCitiesInfo editCountriesMapper(String userName, String country);
+	
+	public CountriesCitiesInfo editCitiesMapper(String userName, String city);
 }
