@@ -18,8 +18,10 @@
 	      <td>${res[status.index]}  </td>
 	      <td>${date[status.index]}  </td><br>
 	  </tr>
-	</c:forEach>
+	</c:forEach><br>
 
+	<input type="submit" value="Add users">
+	<input type="submit" value="Delete users">
     
     <jsp:include page="footer.jsp"/>
 </body>
