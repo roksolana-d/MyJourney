@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>It's header. There should be some picture</h3>
+	<img src="img/tracks_b1.jpg" style='width:100%;height:50%' alt='[]'>
+
 </body>
 </html>

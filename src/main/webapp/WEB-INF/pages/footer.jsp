@@ -4,10 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<style>
+	.block_1 {
+		
+	}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
 	<br/><br/>
+	<div class="block_1"></div> <hr/>
       <center>
          <p>Copyright © 2017. Jedi Temple. All rights reserved.</p>
       </center>
