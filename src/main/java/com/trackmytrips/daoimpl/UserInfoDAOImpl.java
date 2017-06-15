@@ -54,6 +54,38 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
         return roles;
     }
 
+    @Override
+    public List<String> getUsernames() {
+        String sql = "Select Username from Users where Username != 'dbadmin1'";
+        List<String> users = this.getJdbcTemplate().queryForList(sql,String.class);
+        return users;
+    }
+    
+    @Override
+    public List<String> getResidences() {
+        String sql = "Select Residence from Users where Username != 'dbadmin1'";
+        List<String> users = this.getJdbcTemplate().queryForList(sql,String.class);
+        return users;
+    }
+    
+    public List<String> getFirstNames() {
+        String sql = "select FirstName from Users where Username != 'dbadmin1' ";
+        List<String> firstNames = this.getJdbcTemplate().queryForList(sql, String.class);
+        return firstNames;
+    }
+
+    public List<String> getLastNames() {
+        String sql = "select LastName from Users where Username != 'dbadmin1' ";  
+        List<String> lastNames = this.getJdbcTemplate().queryForList(sql, String.class);
+        return lastNames;
+    }
+    
+    public List<String> getDates() {
+        String sql = "select Date_Of_Birth from Users where Username != 'dbadmin1' ";  
+        List<String> dates = this.getJdbcTemplate().queryForList(sql, String.class);
+        return dates;
+    }
+    
     private String getUserFirstName(String userName) {
         String sql = "select FirstName from Users where Username = ? ";
         

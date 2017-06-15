@@ -12,6 +12,16 @@ public interface UserInfoDAO {
      
 	public List<String> getUserRoles(String userName);
 	
+	public List<String> getUsernames();
+	
+	public List<String> getResidences();
+	
+	public List<String> getFirstNames();
+	
+	public List<String> getLastNames();
+	
+	public List<String> getDates();
+	
 	public String getDateOfBirth(String userName);
 	
 	public String getSummary(String userName);

@@ -37,6 +37,8 @@ create table Places
  P_ID int not null,
  Country  VARCHAR(50) not null,
  City VARCHAR(50) not null,
+ CoordX FLOAT(9,7),
+ CoordY FLOAT(9,7),
  City_Status VARCHAR(50) 
 ) ;
 
@@ -111,119 +113,119 @@ values (7, 'kumar', 'USER');
 ---------------------
 -- Insert into Places table
 
-insert into Places (P_ID, Country, City, City_Status)
- values (1,'Ukraine', 'Kyiv', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (1,'Ukraine', 'Kyiv', 'capital', 50.4021368, 30.2525088);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (2,'Ukraine', 'Lviv', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (2,'Ukraine', 'Lviv', NULL, 49.8327787, 23.9421957);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (3,'Netherlands', 'Amsterdam', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (3,'Netherlands', 'Amsterdam', 'capital', 52.3746961, 4.8285745);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (4,'France', 'Paris', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (4,'France', 'Paris', 'capital', 48.8589507, 2.2775171);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (5,'UK', 'London', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (5,'UK', 'London', 'capital', 51.5287718, -0.2417014);
 
-insert into Places (P_ID, Country, City, City_Status)
- values (6,'UK', 'Bristol', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (6,'UK', 'Bristol', NULL, 51.3570991, -3.6231525);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (7,'US', 'Miami', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (7,'US', 'Miami', NULL, 25.7902689, -80.3025756);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (8,'US', 'New York', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (8,'US', 'New York', NULL, 40.7058316, -74.2581909);
 
-insert into Places (P_ID, Country, City, City_Status)
- values (9,'US', 'Los Angeles', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (9,'US', 'Los Angeles', NULL, 34.0207504, -118.6919231);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (10,'US', 'San Francisko', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (10,'US', 'San Francisco', NULL, 37.757815, -122.5076402);
 
-insert into Places (P_ID, Country, City, City_Status)
- values (11,'US', 'Boston', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (11,'US', 'Boston', NULL, 43.272556, -76.1226202);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (12,'Germany', 'Berlin', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (12,'Germany', 'Berlin', 'capital', 52.2574157, 12.9894098);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (13,'Germany', 'Munich', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (13,'Germany', 'Munich', NULL, 48.9352345, 8.965889);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (14,'Austria', 'Vienna', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (14,'Austria', 'Vienna', 'capital', 48.1370518, 15.8950305);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (15,'Austria', 'Hallstatt', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (15,'Austria', 'Hallstatt', NULL, 47.5601464, 13.5631719);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (16,'Ukraine', 'Odessa', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (16,'Ukraine', 'Odessa', NULL, 46.4601261, 30.5717035);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (17,'Ukraine', 'Chernivtsi', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (17,'Ukraine', 'Chernivtsi', NULL, 48.228952, 26.0904992);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (18,'Italy', 'Rome', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (18,'Italy', 'Rome', 'capital', 41.8518616, 11.9545369);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (19,'Italy', 'Venice', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (19,'Italy', 'Venice', NULL, 43.8591351, 12.3658014);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (20,'Italy', 'Florence', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (20,'Italy', 'Florence', NULL, 43.7727656, 10.4833404);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (21,'Italy', 'Burano', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (21,'Italy', 'Burano', NULL, 45.4905016, 12.428467);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (22,'Hungary', 'Budapest', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (22,'Hungary', 'Budapest', 'capital', 47.4042071, 18.9570666);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (23,'Sweden', 'Stockholm', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (23,'Sweden', 'Stockholm', 'capital', 59.326242, 17.8474634);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (24,'Czech Republic', 'Prague', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (24,'Czech Republic', 'Prague', 'capital', 49.8008803, 14.309061);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (25,'Czech Republic', 'Karlovy Vary', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (25,'Czech Republic', 'Karlovy Vary', NULL, 49.9311685, 11.9986745);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (26,'France', 'Nice', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (26,'France', 'Nice', NULL, 43.6822122, 6.8504077);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (27,'Ireland', 'Dublin', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (27,'Ireland', 'Dublin', NULL, 53.3244431, -6.3857871);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (28,'India', 'New Delhi', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (28,'India', 'New Delhi', 'capital', 28.6350432,77.1451167);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (29,'India', 'Mumbai', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (29,'India', 'Mumbai', NULL, 18.5955829, 72.5858389);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (30,'India', 'Calcutta', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (30,'India', 'Calcutta', NULL, 22.8097772, 88.1292971);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (31,'Belarus', 'Minsk', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (31,'Belarus', 'Minsk', 'capital', 53.6867179, 27.01594);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (32,'Poland', 'Krakow', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (32,'Poland', 'Krakow', NULL, 49.7707466, 19.4974343);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (33,'Poland', 'Warsaw', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (33,'Poland', 'Warsaw', 'capital', 51.8251441, 20.8084955);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (34,'Poland', 'Wroclaw', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (34,'Poland', 'Wroclaw', NULL, 50.7810493, 16.9524741);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (35,'Poland', 'Gdansk', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (35,'Poland', 'Gdansk', NULL, 54.0141813, 18.6630094);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (36,'Belgium', 'Brussels', 'capital');
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (36,'Belgium', 'Brussels', 'capital', 50.4003828, 4.2516901);
  
-insert into Places (P_ID, Country, City, City_Status)
- values (37,'Belgium', 'Antwerpen', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (37,'Belgium', 'Antwerpen', NULL, 50.953239, 4.0566884);
 
-insert into Places (P_ID, Country, City, City_Status)
- values (38,'Belgium', 'Brugge', NULL);
+insert into Places (P_ID, Country, City, City_Status, CoordX, CoordY)
+ values (38,'Belgium', 'Brugge', NULL, 50.9649133, 3.0368275);
  
 select * from Places order by P_ID;
 ---------------------
@@ -412,8 +414,14 @@ insert into Users_Places (Uid, Pid)
  where u.Username = 'dbuser1' order by p.Country;
  
 --------------------
- select DISTINCT p.City from Users_Places up
+ select DISTINCT p.City, p.Country from Users_Places up
  join Places p on up.PID = p.P_ID
  join Users u on up.UID = u.U_ID
- where u.Username = 'dbuser1' order by p.City;
+ where u.Username = 'dbuser1' order by p.Country;
  
+ select DISTINCT Country from Users_Places up
+ join Places p on up.PID = p.P_ID
+ join Users u on up.UID = u.U_ID
+ where u.Username = 'dbuser1';
+ 
+

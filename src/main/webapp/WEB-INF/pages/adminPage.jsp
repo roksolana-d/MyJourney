@@ -9,8 +9,20 @@
 	<jsp:include page="header.jsp"/>
     <jsp:include page="_menu.jsp" /> 
     <h2>Admin Page</h2>  
-    <h3>Welcome : ${pageContext.request.userPrincipal.name}</h3> 
-    <b>This is protected page!</b>  
+
+	<c:forEach items="${unames}" var="uitem" varStatus="status">
+	  <tr>
+	      <td>${uitem}  </td>
+	      <td>${fnames[status.index]}  </td>
+	      <td>${lnames[status.index]}  </td>
+	      <td>${res[status.index]}  </td>
+	      <td>${date[status.index]}  </td><br>
+	  </tr>
+	</c:forEach><br>
+
+	<input type="submit" value="Add users">
+	<input type="submit" value="Delete users">
+    
     <jsp:include page="footer.jsp"/>
 </body>
 </html>

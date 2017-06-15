@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,7 +30,20 @@ public class MainController {
 	   }
 	 
 	   @RequestMapping(value = "/admin", method = RequestMethod.GET)
-	   public String adminPage(Model model) {
+	   public String adminPage(Model model, Principal principal) {
+	       String userName = principal.getName();
+	       List<String> unames = userInfoDAO.getUsernames();
+	       List<String> date = userInfoDAO.getDates();
+	       List<String> res = userInfoDAO.getResidences();
+	       List<String> lNames = userInfoDAO.getFirstNames();
+	       List<String> fNames = userInfoDAO.getLastNames();
+	       
+	       model.addAttribute("username", userName);
+	       model.addAttribute("unames", unames);
+	       model.addAttribute("fnames", fNames);
+	       model.addAttribute("lnames", lNames);
+	       model.addAttribute("date", date);
+	       model.addAttribute("res", res);
 	       return "adminPage";
 	   }
 	   
@@ -112,7 +127,8 @@ public class MainController {
 	       csInfo.setCities(allCities);
 	       //boolean cityCheck = userInfoDAO.citiesCheck(userName);
 	       //boolean countryCheck = userInfoDAO.countriesCheck(userName);
-	       
+	       List<String> notVisitedCo = userInfoDAO.selectCountries(userName);
+	       notVisitedCo.removeAll(countriesList);
 	       
 	       model.addAttribute("allCountries", csInfo.getCountries());
 	       model.addAttribute("allCities", csInfo.getCities());
@@ -120,11 +136,22 @@ public class MainController {
 	       model.addAttribute("citiesList", citiesList);
 	       model.addAttribute("countriesCount", countriesCount);
 	       model.addAttribute("citiesCount", citiesCount);
-	      // model.addAttribute("countryCheck", countryCheck);
+	       model.addAttribute("notVisCo", notVisitedCo);
+	       //model.addAttribute("countryCheck", countryCheck);
 	       //model.addAttribute("cityCheck", cityCheck);
 	       return "editPlaces";
 	   }
-	 
+	
+	   @RequestMapping(value = { "/allcities/save" }, method = RequestMethod.POST)
+	   public String submitForm(@ModelAttribute("allcities")List<String> allcities,  Principal principal) {
+		   String userName = principal.getName();
+		   for(String city : allcities){
+			   userInfoDAO.editCities(userName, city);
+		   }
+	       return "submitForm";
+	   }
+
+	   
 	   @RequestMapping(value = "/403", method = RequestMethod.GET)
 	   public String accessDenied(Model model, Principal principal) {
 	        
