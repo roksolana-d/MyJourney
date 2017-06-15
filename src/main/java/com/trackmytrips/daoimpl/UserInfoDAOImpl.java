@@ -277,11 +277,11 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	
 	@Override
 	public List<String> selectCountriesIDs(String userName, String country) {
-		String sql = " select PID from Users_Places up"
+		String sql = " select DISTINCT Country from Users_Places up"
 						 + " join Places p on up.PID = p.P_ID"
 						 + " join Users u on up.UID = u.U_ID"
-						 + "  where u.Username = ? AND Country = ? "; 
-        Object[] params = new Object[] { userName ,country};
+						 + "  where u.Username = ?"; 
+        Object[] params = new Object[] { userName};
          
         List<String> countriesIDs = this.getJdbcTemplate().queryForList(sql, params, String.class);
 		return countriesIDs;
@@ -301,11 +301,11 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	}
 	
 	@Override
-	public boolean citiesCheck(List<String> cities, String userName){
+	public boolean citiesCheck(String userName){
 		List<String> citiesIDs = new ArrayList<String>();
 		boolean cityCh = false;
 
-		for(String city : cities){
+		for(String city : selectCities(userName)){
 	    	citiesIDs = selectCitiesIDs(userName, city);
 	    }
 		
@@ -318,19 +318,18 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	}
 	
 	@Override
-	public boolean countriesCheck(List<String> countries, String userName){
-		List<String> countriesIDs = new ArrayList<String>();
+	public boolean countriesCheck(String userName){
+		List<String> countriesIDs = null;
 		boolean countryCh = false;
 
-		for(String city : countries){
-	    	countriesIDs = selectCountriesIDs(userName, city);
+		for(String country : selectCountries(userName)){
+	    	countriesIDs = selectCountriesIDs(userName, country);
 	    }
 		
-		if(countriesIDs != null){
-	    	countryCh = true;
+		if(countriesIDs == null){
+	    	return false;
 	    }else{
-	    	countryCh = false;
+	    	return true;
 	    }
-		return countryCh;
 	}
 }

@@ -108,20 +108,20 @@ public class MainController {
 	       List<String> citiesCount = userInfoDAO.countVisitedCities(userName);
 	       List<String> allCities = userInfoDAO.selectCities(userName);
 	       List<String> allCountries = userInfoDAO.selectCountries(userName);
-	       
-	       boolean cityCheck = userInfoDAO.citiesCheck(allCities, userName);
-	       boolean countryCheck = userInfoDAO.countriesCheck(allCountries, userName);
 	       csInfo.setCountries(allCountries);
 	       csInfo.setCities(allCities);
+	       //boolean cityCheck = userInfoDAO.citiesCheck(userName);
+	       //boolean countryCheck = userInfoDAO.countriesCheck(userName);
+	       
 	       
 	       model.addAttribute("allCountries", csInfo.getCountries());
 	       model.addAttribute("allCities", csInfo.getCities());
-	       model.addAttribute("countries", countriesList);
-	       model.addAttribute("cities", citiesList);
+	       model.addAttribute("countriesList", countriesList);
+	       model.addAttribute("citiesList", citiesList);
 	       model.addAttribute("countriesCount", countriesCount);
 	       model.addAttribute("citiesCount", citiesCount);
-	       model.addAttribute("countryCheck", countryCheck);
-	       model.addAttribute("cityCheck", cityCheck);
+	      // model.addAttribute("countryCheck", countryCheck);
+	       //model.addAttribute("cityCheck", cityCheck);
 	       return "editPlaces";
 	   }
 	 
