@@ -12,15 +12,17 @@
 	<jsp:include page="header.jsp"/>  	
   	<jsp:include page="_menu.jsp" />
 
-	<% 
-	   String[] city = request.getParameterValues("city");
-	   if (city != null) 
-	   {
-	   	  String check = "checked='checked'";
-	      List list = Arrays.asList(city);
-		  if(list.contains("${item}"))pageContext.setAttribute("${item}", check);	 
-	   }
-	%>
+	<script>
+	/*	function submitForm(theForm){
+		   String[] city = request.getParameterValues("city");
+		   if (city != null) 
+		   {
+		   	  String check = "checked='checked'";
+		      List list = Arrays.asList(city);
+			  if(list.contains("${item}"))pageContext.setAttribute("${item}", check);	 
+		   }
+		}*/
+	</script>
 	
 <!--  
   	<h4>Select countries you have visited</h4>
@@ -45,7 +47,7 @@
 	-->
 
     <h4>Select cities you have visited</h4>
- 	<form name="cities" method='POST'>
+ 	<form name="cities" method='POST' action="/allcities/save">
 				  <c:forEach items="${allCities}" var="item">
 					<input type=checkbox name='city' value="${item}" <%=("${citiesList}".contains("${item}") ? ("checked='checked'") : "")%> />${item}<br>
 				  </c:forEach><br>

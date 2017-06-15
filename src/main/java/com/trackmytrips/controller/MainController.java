@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,7 +30,20 @@ public class MainController {
 	   }
 	 
 	   @RequestMapping(value = "/admin", method = RequestMethod.GET)
-	   public String adminPage(Model model) {
+	   public String adminPage(Model model, Principal principal) {
+	       String userName = principal.getName();
+	       List<String> unames = userInfoDAO.getUsernames();
+	       List<String> date = userInfoDAO.getDates();
+	       List<String> res = userInfoDAO.getResidences();
+	       List<String> lNames = userInfoDAO.getFirstNames();
+	       List<String> fNames = userInfoDAO.getLastNames();
+	       
+	       model.addAttribute("username", userName);
+	       model.addAttribute("unames", unames);
+	       model.addAttribute("fnames", fNames);
+	       model.addAttribute("lnames", lNames);
+	       model.addAttribute("date", date);
+	       model.addAttribute("res", res);
 	       return "adminPage";
 	   }
 	   
@@ -127,14 +141,15 @@ public class MainController {
 	       //model.addAttribute("cityCheck", cityCheck);
 	       return "editPlaces";
 	   }
-	 /*
-	   @RequestMapping(method = RequestMethod.POST)
-	   public String submitForm(Model model, BindingResult result, Principal principal, ) {
+	
+	   @RequestMapping(value = { "/allcities/save" }, method = RequestMethod.POST)
+	   public String submitForm(@ModelAttribute("allcities")List<String> allcities,  Principal principal) {
 		   String userName = principal.getName();
-		   userInfoDAO.editCountries(userName, request);
-
-	       return "successMember";
-	   }*/
+		   for(String city : allcities){
+			   userInfoDAO.editCities(userName, city);
+		   }
+	       return "submitForm";
+	   }
 
 	   
 	   @RequestMapping(value = "/403", method = RequestMethod.GET)
