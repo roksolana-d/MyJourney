@@ -76,14 +76,7 @@ public class MainController {
 	   @RequestMapping(value = "/editUser", method = RequestMethod.GET)
 	   public String editUser(Model model, Principal principal) {
 	       // After user login successfully.
-		   CountriesCitiesInfo csInfo = new CountriesCitiesInfo();
 	       String userName = principal.getName();
-	       List<String> countriesList = userInfoDAO.getVisitedCountries(userName);
-	       List<String> citiesList = userInfoDAO.getVisitedCities(userName);
-	       List<String> countriesCount = userInfoDAO.countVisitedCountries(userName);
-	       List<String> citiesCount = userInfoDAO.countVisitedCities(userName);
-	       List<String> allCities = userInfoDAO.selectCities(userName);
-	       List<String> allCountries = userInfoDAO.selectCountries(userName);
 	       List<String> nsur = userInfoDAO.getNameSurname(userName);
 	       String date = userInfoDAO.getDateOfBirth(userName);
 	       String summary = userInfoDAO.getSummary(userName);
@@ -97,12 +90,6 @@ public class MainController {
 	       model.addAttribute("date", date);
 	       model.addAttribute("summary", summary);
 	       model.addAttribute("residence", residence);
-	       model.addAttribute("allCountries", allCountries);
-	       model.addAttribute("allCities", allCities);
-	       model.addAttribute("countries", countriesList);
-	       model.addAttribute("cities", citiesList);
-	       model.addAttribute("countriesCount", countriesCount);
-	       model.addAttribute("citiesCount", citiesCount);
 	       return "editUserPage";
 	   }
 	   
@@ -111,27 +98,18 @@ public class MainController {
 	       // After user login successfully.
 		   CountriesCitiesInfo csInfo = new CountriesCitiesInfo();
 	       String userName = principal.getName();
+	       
 	       List<String> countriesList = userInfoDAO.getVisitedCountries(userName);
 	       List<String> citiesList = userInfoDAO.getVisitedCities(userName);
 	       List<String> countriesCount = userInfoDAO.countVisitedCountries(userName);
 	       List<String> citiesCount = userInfoDAO.countVisitedCities(userName);
 	       List<String> allCities = userInfoDAO.selectCities(userName);
 	       List<String> allCountries = userInfoDAO.selectCountries(userName);
-	       List<String> nsur = userInfoDAO.getNameSurname(userName);
-	       String date = userInfoDAO.getDateOfBirth(userName);
-	       String summary = userInfoDAO.getSummary(userName);
-	       String residence = userInfoDAO.getResidence(userName);
-	       String lastName = userInfoDAO.getFirstName(userName);
-	       String firstName = userInfoDAO.getLastName(userName);
-	       model.addAttribute("username", userName);
-	       model.addAttribute("nsur", nsur);
-	       model.addAttribute("firstname", firstName);
-	       model.addAttribute("lastname", lastName);
-	       model.addAttribute("date", date);
-	       model.addAttribute("summary", summary);
-	       model.addAttribute("residence", residence);
-	       model.addAttribute("allCountries", allCountries);
-	       model.addAttribute("allCities", allCities);
+	       csInfo.setCountries(allCountries);
+	       csInfo.setCities(allCities);
+	       
+	       model.addAttribute("allCountries", csInfo.getCountries());
+	       model.addAttribute("allCities", csInfo.getCities());
 	       model.addAttribute("countries", countriesList);
 	       model.addAttribute("cities", citiesList);
 	       model.addAttribute("countriesCount", countriesCount);
