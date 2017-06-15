@@ -114,7 +114,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
     			+ " join Places p on up.PID = p.P_ID "
     			+ " join Users u on up.UID = u.U_ID "
     			+ " where u.Username = ? "
-    			+ " order by p.City;";
+    			+ " order by p.Country;";
     	Object [] params = new Object[] { userName };
     	List<String> cities = this.getJdbcTemplate().queryForList(sql, params, String.class);
     	return cities;
