@@ -10,11 +10,11 @@
 <body>
 	<jsp:include page="header.jsp"/>  	
   	<jsp:include page="_menu.jsp" />
-  	
+
   	<h4>Select countries you have visited</h4>
- 	<form name="countries" method='POST'>
+ 	<form name="countries" method='POST'>=
 				  <c:forEach items="${allCountries}" var="item">
-					<input type=checkbox name="country" value="${item}" />${item }<br>
+					<input type=checkbox name="country" value="${item}" checked=<%=("${countriesList}".contains("${item}") ? "checked" : "")%> />${item}<br>
 				  </c:forEach><br>
 		<input type="submit" value="Submit"/>
     </form>
@@ -22,7 +22,7 @@
     <h4>Select cities you have visited</h4>
  	<form name="cities" method='POST'>
 				  <c:forEach items="${allCities}" var="item">
-					<input type=checkbox name='city' value="${item}" />${item}<br>
+					<input type=checkbox name='city' value="${item}" checked=<%=("${citiesList}".contains("${item}") ? "checked" : "")%> />${item}<br>
 				  </c:forEach><br>
 		<input type="submit" value="Submit"/>
     </form>
