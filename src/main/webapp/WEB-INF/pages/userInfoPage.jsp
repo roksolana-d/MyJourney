@@ -80,6 +80,8 @@
     	${loop.last ? '' : ', '}
 	</c:forEach>
 	
+	 <a href="${pageContext.request.contextPath}/editPlaces">Add more visited places</a> 
+	
 	<br/><br/><br/>
 	<div id="map-canvas" style="height:300px; width:500px"></div>
 	<jsp:include page="footer.jsp"/> 
